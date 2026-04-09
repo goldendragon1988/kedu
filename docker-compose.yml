@@ -1,0 +1,41 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: foreman start -f Procfile.docker.dev
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/kedu2_development
+      RAILS_ENV: development
+      PORT: ${PORT:-3000}
+    ports:
+      - "${PORT:-3000}:${PORT:-3000}"
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/rails
+      - bundle:/usr/local/bundle
+    working_dir: /rails
+
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: kedu2_development
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d kedu2_development"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  bundle:
+  postgres_data:
