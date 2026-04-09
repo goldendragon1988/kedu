@@ -1,0 +1,23 @@
+<div class="container mx-auto p-4">
+  <h1 class="text-2xl mb-4">Puzzles</h1>
+
+  <p>Choose a puzzle type to generate:</p>
+
+  <ul class="list-disc list-inside">
+    <li>
+      <a class="text-blue-600 hover:underline" href="<%= puzzles_word_search_pdf_path %>">Word Search (PDF)</a>
+    </li>
+    <li>
+      <a class="text-blue-600 hover:underline" href="<%= puzzles_crossword_pdf_path %>">Crossword (PDF)</a>
+    </li>
+    <li>
+      <a class="text-blue-600 hover:underline" href="<%= puzzles_sudoku_pdf_path %>">Sudoku (PDF)</a>
+    </li>
+  </ul>
+
+  <p>If you want to download a file directly use the corresponding <code>download</code> link for each type.</p>
+</div>
+
+<div>
+  <%= link_to "DL: Word Search", puzzles_word_search_download_path(format: :pdf), class: "btn btn-primary", target: "_blank" %>
+</div>

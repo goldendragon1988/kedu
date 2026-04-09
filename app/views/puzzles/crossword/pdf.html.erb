@@ -1,0 +1,14 @@
+<div class="container mx-auto p-4">
+  <h1 class="text-lg font-semibold">Crossword Puzzle</h1>
+
+  <% if @data[:clues].present? %>
+    <p class="Clues"></p>
+    <ol>
+      <% @data[:clues].each_with_index do |clue, idx| %>
+        <li><%= clue %></li>
+      <% end %>
+    </ol>
+  <% else %>
+    <p class="no-clues">No clues were supplied. You can paste newline-separated clues in the `clues` query parameter.</p>
+  <% end %>
+</div>
