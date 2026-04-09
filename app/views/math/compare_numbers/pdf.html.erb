@@ -1,0 +1,33 @@
+<div class="container mx-auto p-4">
+  <div class="divide-y divide-gray-900 overflow-hidden bg-white border-2 border-gray-900 border-solid">
+    <div class="px-4 py-5">
+      <div class="flex justify-between">
+        <div>Name: _________________</div>
+        <h1 class="text-lg leading-6 font-semibold text-gray-900">Comparing Numbers</h1>
+        <div>Date: _________________</div>
+      </div>
+    </div>
+    <div class="px-4 py-2">
+      <div class="flex justify-center items-center">
+        <div>Write the correct symbol.</div>
+        <span class="font-bold text-xl mx-2">&lt;</span>
+        <div>is less than,</div>
+        <span class="font-bold text-xl mx-2">&gt;</span>
+        <div>is greater than,</div>
+        <span class="font-bold text-xl mx-2">=</span>
+        <div>is equal to</div>
+      </div>
+    </div>
+    <div class="px-4 py-5">
+      <ul class="grid grid-cols-3">
+        <% @data.each do |item| %>
+          <li class="border border-gray-900 border-solid px-2 py-3 text-number flex justify-around grid grid-cols-3">
+            <div class="text-center"><%= item.first %></div>
+            <div class="text-center">____</div>
+            <div class="text-center"><%= item.last %></div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
