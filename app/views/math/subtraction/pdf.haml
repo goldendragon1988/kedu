@@ -1,0 +1,28 @@
+.container.mx-auto.p-4
+  .divide-y.divide-gray-900.overflow-hidden.bg-white.border-2.border-gray-900.border-solid
+    .px-4.py-5
+      .flex.justify-between
+        %div
+          Name: _________________
+        %h1.text-lg.leading-6.font-semibold.text-gray-900
+          Subtraction
+        %div
+          Date: _________________
+    .px-4.py-2
+      .flex.justify-center.items-center
+        %div The difference between two numbers
+        .span.font-bold.text-xl.mx-2 1
+        %div -
+        .span.font-bold.text-xl.mx-2 1
+        %div =
+        .span.font-bold.text-xl.mx-2 0
+    .px-4.py-5
+      %ul.grid.grid-cols-3
+        - @data.each do |item|
+          %li.border.border-gray-900.border-solid.py-3.text-number.flex.justify-around.grid.grid-cols-5
+            .text-center= item.first
+            .text-center -
+            .text-center= item.last
+            .text-center =
+            .text-center __
+
