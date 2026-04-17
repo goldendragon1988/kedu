@@ -1,0 +1,7 @@
+{
+  "name": "kedu",
+  "private": true,
+  "dependencies": {
+    "puppeteer": "^23.0.0"
+  }
+}

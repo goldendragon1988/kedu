@@ -10,7 +10,7 @@ class PdfGenerator
     retries ||= 0
 
     begin
-      Grover.new(html, config).to_pdf
+      Grover.new(html, **config).to_pdf
     rescue Grover::JavaScript::TimeoutError => e
       retries += 1
       retry if retries < 3
