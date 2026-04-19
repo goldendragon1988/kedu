@@ -10,9 +10,9 @@ services:
     environment:
       DATABASE_URL: postgres://postgres:postgres@db:5432/kedu2_development
       RAILS_ENV: development
-      PORT: ${PORT:-3000}
+      PORT: ${PORT:-4000}
     ports:
-      - "${PORT:-3000}:${PORT:-3000}"
+      - "${PORT:-4000}:${PORT:-4000}"
     stdin_open: true
     tty: true
     volumes:

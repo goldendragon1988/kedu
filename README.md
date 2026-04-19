@@ -16,12 +16,12 @@ Build and start the app plus PostgreSQL:
 docker compose up --build
 ```
 
-The Rails app will be available at `http://localhost:3000` by default.
+The Rails app will be available at `http://localhost:4000` by default.
 
-To use a different host/container port:
+To use a different port:
 
 ```sh
-docker compose up --build
+PORT=3000 docker compose up --build
 ```
 
 You can also change the published PostgreSQL port if `5432` is already in use:
@@ -35,7 +35,7 @@ POSTGRES_PORT=5433 docker compose up --build
 Start in the background:
 
 ```sh
-PORT=4000 docker compose up -d
+docker compose up -d
 ```
 
 Stop the stack:
@@ -74,7 +74,7 @@ docker compose exec web bash
 Open a Rails console in the running container:
 
 ```sh
-PORT=4000 docker compose exec web bin/rails console
+docker compose exec web bin/rails console
 ```
 
 Run a one-off Rails command in a fresh container:
