@@ -18,6 +18,7 @@ services:
     volumes:
       - .:/rails
       - bundle:/usr/local/bundle
+      - node_modules:/rails/node_modules
     working_dir: /rails
 
   db:
@@ -36,4 +37,5 @@ services:
 
 volumes:
   bundle:
+  node_modules:
   postgres_data:

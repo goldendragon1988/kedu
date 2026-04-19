@@ -3,6 +3,10 @@ set -e
 
 bundle check || bundle install
 
+if [ -f package.json ] && [ ! -d node_modules/puppeteer ]; then
+  npm install
+fi
+
 rm -f tmp/pids/server.pid
 
 if [ -n "$DATABASE_URL" ]; then

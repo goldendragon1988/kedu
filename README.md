@@ -35,7 +35,7 @@ POSTGRES_PORT=5433 docker compose up --build
 Start in the background:
 
 ```sh
-docker compose up -d
+PORT=4000 docker compose up -d
 ```
 
 Stop the stack:
@@ -74,7 +74,7 @@ docker compose exec web bash
 Open a Rails console in the running container:
 
 ```sh
-docker compose exec web bin/rails console
+PORT=4000 docker compose exec web bin/rails console
 ```
 
 Run a one-off Rails command in a fresh container:
@@ -91,7 +91,8 @@ docker compose run --rm web bin/rspec
 
 ### Database
 
-The app container runs `bin/rails db:prepare` on startup, so initial setup and pending migrations are applied automatically when the `web` service boots.
+The app container runs `bin/rails db:prepare` on startup, so initial setup and pending migrations are applied
+automatically when the `web` service boots.
 
 Create a migration:
 
