@@ -21,7 +21,7 @@ The Rails app will be available at `http://localhost:3000` by default.
 To use a different host/container port:
 
 ```sh
-PORT=4000 docker compose up --build
+docker compose up --build
 ```
 
 You can also change the published PostgreSQL port if `5432` is already in use:

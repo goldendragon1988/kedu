@@ -3,27 +3,33 @@ FROM docker.io/library/ruby:${RUBY_VERSION}-slim
 
 WORKDIR /rails
 
+ENV PUPPETEER_SKIP_DOWNLOAD=true \
+    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
+
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
-      build-essential \
-      git \
-      chromium \
-      libpq-dev \
-      libvips \
-      libyaml-dev \
-      nodejs \
-      npm \
-      pkg-config \
-      postgresql-client && \
+    build-essential \
+    git \
+    chromium \
+    libatk-bridge2.0-0 \
+    libgtk-3-0 \
+    libpq-dev \
+    libvips \
+    libyaml-dev \
+    nodejs \
+    npm \
+    pkg-config \
+    postgresql-client && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
+
+# Install Puppeteer globally (PUPPETEER_SKIP_DOWNLOAD=true skips Chromium download)
+RUN npm install -g puppeteer
 
 ENV RAILS_ENV=development \
     BUNDLE_PATH=/usr/local/bundle \
     BUNDLE_JOBS=4 \
     BUNDLE_RETRY=3 \
-    PORT=3000 \
-    PUPPETEER_SKIP_DOWNLOAD=true \
-    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
+    PORT=4000
 
 COPY Gemfile Gemfile.lock ./
 COPY vendor ./vendor
