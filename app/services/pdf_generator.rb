@@ -29,7 +29,12 @@ class PdfGenerator
         bottom: "5px",
       },
       wait_until: "domcontentloaded",
-      display_url: "http://localhost:3000",
+      display_url: display_url,
     }
+  end
+
+  def display_url
+    port = ENV.fetch("PORT", 3000)
+    "http://127.0.0.1:#{port}"
   end
 end

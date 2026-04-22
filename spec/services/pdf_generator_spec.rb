@@ -15,12 +15,23 @@ RSpec.describe PdfGenerator, type: :service do
           bottom: "5px",
         },
         wait_until: "domcontentloaded",
-        display_url: "http://localhost:3000",
+        display_url: "http://127.0.0.1:3000",
       ).and_return(grover)
 
       pdf = described_class.new("math/addition/pdf", { sample: true }).generate
 
       expect(pdf).to eq("pdf-bytes")
+    end
+  end
+
+  describe "#display_url" do
+    it "uses the configured app port" do
+      original_port = ENV["PORT"]
+      ENV["PORT"] = "4000"
+
+      expect(described_class.new("math/addition/pdf", { sample: true }).send(:display_url)).to eq("http://127.0.0.1:4000")
+    ensure
+      ENV["PORT"] = original_port
     end
   end
 end
