@@ -1,8 +1,9 @@
 class Numbers
   DEFAULT_COUNT = 33
+  REPEATED_ADDITION_COUNT = 12
 
   def initialize(type, from, to)
-    @type = type
+    @type = type.to_sym
     @from = from
     @to = to
   end
@@ -13,6 +14,8 @@ class Numbers
       generate_add_pair(@from, @to)
     when :random, :addition
       generate_random_pair(@from, @to)
+    when :repeated_addition
+      generate_repeated_addition_pair(@from, @to)
     when :subtraction, :modulo
       generate_random_pair(@from, @to).map { |pair| pair.sort.reverse }
     when :multiplication
@@ -48,10 +51,23 @@ class Numbers
     pairs = []
 
     DEFAULT_COUNT.times do
-      addend1 = rand(from..to - 1) 
+      addend1 = rand(from..to - 1)
       addend2 = rand(from..[to - addend1, to - 1].min)
 
       pairs << [addend1, addend2]
+    end
+
+    pairs
+  end
+
+  def generate_repeated_addition_pair(from, to)
+    pairs = []
+
+    REPEATED_ADDITION_COUNT.times do
+      addend = rand(1..9)
+      repeat_count = rand(3..10)
+
+      pairs << Array.new(repeat_count, addend)
     end
 
     pairs
@@ -100,7 +116,7 @@ class Numbers
       when "÷"
         b = rand(1..10)
         result = rand(1..10)
-        a = result * b 
+        a = result * b
       end
 
       # decide which of the three values will be missing

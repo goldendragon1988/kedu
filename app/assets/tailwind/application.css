@@ -3,3 +3,7 @@
 .text-number {
   font-size: 2rem;
 }
+
+.text-number-compact {
+  font-size: 1.75rem;
+}

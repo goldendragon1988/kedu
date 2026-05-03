@@ -18,14 +18,20 @@
       </div>
     </div>
     <div class="px-4 py-5">
-      <ul class="grid grid-cols-3">
+      <ul>
         <% @data.each do |item| %>
-          <li class="border border-gray-900 border-solid py-3 text-number flex justify-around grid grid-cols-5">
-            <div class="text-center"><%= item.first %></div>
-            <div class="text-center">+</div>
-            <div class="text-center"><%= item.last %></div>
-            <div class="text-center">=</div>
-            <div class="text-center">__</div>
+          <% compact_row = item.length > 2 %>
+          <li class="border border-gray-900 border-solid py-3 <%= compact_row ? 'text-number-compact' : 'text-number' %>">
+            <div class="flex justify-center items-center <%= compact_row ? 'gap-2' : 'gap-3' %> flex-wrap">
+              <% item.each_with_index do |number, index| %>
+                <div class="text-center"><%= number %></div>
+                <% if index < item.length - 1 %>
+                  <div class="text-center">+</div>
+                <% end %>
+              <% end %>
+              <div class="text-center">=</div>
+              <div class="text-center">__</div>
+            </div>
           </li>
         <% end %>
       </ul>
