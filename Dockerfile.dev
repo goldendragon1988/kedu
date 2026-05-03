@@ -39,4 +39,4 @@ RUN gem install foreman && bundle install
 COPY . .
 
 ENTRYPOINT ["/rails/bin/docker-dev-entrypoint"]
-CMD ["foreman", "start", "-f", "Procfile.docker.dev"]
+CMD ["/rails/bin/docker-web"]

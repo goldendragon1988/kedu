@@ -5,8 +5,8 @@
 This project includes a development-focused Docker setup:
 
 - [`Dockerfile.dev`](Dockerfile.dev) for the Rails app container
-- [`docker-compose.yml`](docker-compose.yml) for Rails + PostgreSQL
-- [`Procfile.docker.dev`](Procfile.docker.dev) for the web server and Tailwind watcher
+- [`docker-compose.yml`](docker-compose.yml) for Rails + Tailwind + PostgreSQL
+- [`Procfile.docker.dev`](Procfile.docker.dev) for local `foreman`-style development if needed
 
 ### Start the stack
 
@@ -60,6 +60,7 @@ View logs:
 
 ```sh
 docker compose logs -f web
+docker compose logs -f css
 docker compose logs -f db
 ```
 

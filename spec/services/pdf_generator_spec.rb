@@ -15,6 +15,7 @@ RSpec.describe PdfGenerator, type: :service do
           bottom: "5px",
         },
         wait_until: "domcontentloaded",
+        launch_args: ["--no-sandbox", "--disable-setuid-sandbox"],
         display_url: "http://127.0.0.1:3000",
       ).and_return(grover)
 

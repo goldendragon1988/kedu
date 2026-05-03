@@ -29,8 +29,10 @@ class PdfGenerator
         bottom: "5px",
       },
       wait_until: "domcontentloaded",
+      launch_args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      executable_path: ENV["PUPPETEER_EXECUTABLE_PATH"],
       display_url: display_url,
-    }
+    }.compact
   end
 
   def display_url

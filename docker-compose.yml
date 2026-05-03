@@ -3,16 +3,39 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
-    command: foreman start -f Procfile.docker.dev
+    command: /rails/bin/docker-web
     depends_on:
       db:
         condition: service_healthy
     environment:
       DATABASE_URL: postgres://postgres:postgres@db:5432/kedu2_development
       RAILS_ENV: development
+      GROVER_NO_SANDBOX: "true"
       PORT: ${PORT:-4000}
     ports:
       - "${PORT:-4000}:${PORT:-4000}"
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/rails
+      - bundle:/usr/local/bundle
+      - node_modules:/rails/node_modules
+    working_dir: /rails
+
+  css:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: bin/rails tailwindcss:watch[always]
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/kedu2_development
+      RAILS_ENV: development
+      GROVER_NO_SANDBOX: "true"
+      PORT: ${PORT:-4000}
+    restart: unless-stopped
     stdin_open: true
     tty: true
     volumes:
